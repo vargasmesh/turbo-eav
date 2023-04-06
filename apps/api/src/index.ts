@@ -1,11 +1,23 @@
 import { initTRPC } from "@trpc/server";
+import { createHTTPServer } from "@trpc/server/adapters/standalone";
+import * as cors from "cors";
 
 export const t = initTRPC.create();
 
 export const appRouter = t.router({
-  helloWolrd: t.procedure.query(() => {
+  helloWorld: t.procedure.query(() => {
+    console.log("hello world");
     return "Hello World!";
   }),
 });
 
 export type AppRouter = typeof appRouter;
+
+createHTTPServer({
+  middleware: cors(),
+  router: appRouter,
+  createContext() {
+    console.log("context 3");
+    return {};
+  },
+}).listen(3000);
