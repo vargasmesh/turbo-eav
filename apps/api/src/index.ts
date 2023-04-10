@@ -1,3 +1,5 @@
+import "dotenv/config";
+
 import { initTRPC } from "@trpc/server";
 import { createHTTPServer } from "@trpc/server/adapters/standalone";
 import * as cors from "cors";
