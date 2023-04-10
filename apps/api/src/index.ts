@@ -6,7 +6,6 @@ export const t = initTRPC.create();
 
 export const appRouter = t.router({
   helloWorld: t.procedure.query(() => {
-    console.log("hello world");
     return "Hello World!";
   }),
 });
@@ -16,8 +15,4 @@ export type AppRouter = typeof appRouter;
 createHTTPServer({
   middleware: cors(),
   router: appRouter,
-  createContext() {
-    console.log("context 3");
-    return {};
-  },
 }).listen(3000);
