@@ -1,8 +1,5 @@
 {
   "name": "tsconfig",
   "version": "1.0.0",
-  "license": "MIT",
-  "dependencies": {
-    "api": "workspace:*"
-  }
+  "license": "MIT"
 }
