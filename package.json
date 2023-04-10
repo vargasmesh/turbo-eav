@@ -1,5 +1,8 @@
 {
   "name": "turbo-eav",
   "version": "1.0.0",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "dev": "turbo run dev"
+  }
 }
