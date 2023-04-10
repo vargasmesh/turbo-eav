@@ -9,10 +9,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@tanstack/react-query": "^4.28.0",
     "@trpc/client": "^10.18.0",
+    "@trpc/react-query": "^10.19.1",
     "@trpc/server": "^10.18.0",
-    "preact": "^10.13.0",
-    "api": "workspace:*"
+    "api": "workspace:*",
+    "preact": "^10.13.0"
   },
   "devDependencies": {
     "@preact/preset-vite": "^2.5.0",

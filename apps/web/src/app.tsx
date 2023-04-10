@@ -1,12 +1,7 @@
-import { client } from "./trpc.client";
-import { useState } from "preact/hooks";
+import { trpc } from "./trpc";
 
 export function App() {
-  const [message, setMessage] = useState("");
+  const helloQuery = trpc.helloWorld.useQuery();
 
-  client.helloWorld.query().then((data) => {
-    setMessage(() => data);
-  });
-
-  return <>{message}</>;
+  return <>{helloQuery.data}</>;
 }
