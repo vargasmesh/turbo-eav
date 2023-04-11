@@ -4,7 +4,8 @@
   "description": "",
   "main": "src/index.ts",
   "scripts": {
-    "dev": "docker-compose up -d && nodemon src/index.ts"
+    "dev": "docker-compose up -d && nodemon src/index.ts",
+    "db:generate": "drizzle-kit generate:pg"
   },
   "keywords": [],
   "author": "",

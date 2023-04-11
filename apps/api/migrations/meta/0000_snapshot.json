@@ -1,0 +1,145 @@
+{
+  "version": "5",
+  "dialect": "pg",
+  "id": "7303f97f-58d2-4ab9-93d4-e7c2d5e7a174",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "tables": {
+    "attribute": {
+      "name": "attribute",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {}
+    },
+    "entity": {
+      "name": "entity",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {}
+    },
+    "entity_attribute_value": {
+      "name": "entity_attribute_value",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "entity_id": {
+          "name": "entity_id",
+          "type": "serial",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "attribute_id": {
+          "name": "attribute_id",
+          "type": "serial",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "value": {
+          "name": "value",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {
+        "eav_idx": {
+          "name": "eav_idx",
+          "columns": [
+            "entity_id",
+            "attribute_id",
+            "value"
+          ],
+          "isUnique": false
+        },
+        "aev_idx": {
+          "name": "aev_idx",
+          "columns": [
+            "attribute_id",
+            "entity_id",
+            "value"
+          ],
+          "isUnique": false
+        },
+        "ave_idx": {
+          "name": "ave_idx",
+          "columns": [
+            "attribute_id",
+            "value",
+            "entity_id"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "entity_attribute_value_entity_id_entity_id_fk": {
+          "name": "entity_attribute_value_entity_id_entity_id_fk",
+          "tableFrom": "entity_attribute_value",
+          "tableTo": "entity",
+          "columnsFrom": [
+            "entity_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "entity_attribute_value_attribute_id_attribute_id_fk": {
+          "name": "entity_attribute_value_attribute_id_attribute_id_fk",
+          "tableFrom": "entity_attribute_value",
+          "tableTo": "attribute",
+          "columnsFrom": [
+            "attribute_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {}
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "_meta": {
+    "schemas": {},
+    "tables": {},
+    "columns": {}
+  }
+}
