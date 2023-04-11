@@ -1,0 +1,3 @@
+ALTER TABLE "attribute" ALTER COLUMN "name" SET NOT NULL;
+ALTER TABLE "entity" ALTER COLUMN "name" SET NOT NULL;
+ALTER TABLE "entity_attribute_value" ALTER COLUMN "value" SET NOT NULL;

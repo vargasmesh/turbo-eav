@@ -7,6 +7,12 @@
       "version": "5",
       "when": 1681249657152,
       "tag": "0000_motionless_quentin_quire"
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1681250667177,
+      "tag": "0001_minor_loa"
     }
   ]
 }

@@ -2,12 +2,12 @@ import { index, pgTable, serial, text } from "drizzle-orm/pg-core";
 
 export const entity = pgTable("entity", {
   id: serial("id").primaryKey(),
-  name: text("name"),
+  name: text("name").notNull(),
 });
 
 export const attribute = pgTable("attribute", {
   id: serial("id").primaryKey(),
-  name: text("name"),
+  name: text("name").notNull(),
 });
 
 export const entityAttributeValue = pgTable(
@@ -16,7 +16,7 @@ export const entityAttributeValue = pgTable(
     id: serial("id").primaryKey(),
     entity_id: serial("entity_id").references(() => entity.id),
     attribute_id: serial("attribute_id").references(() => attribute.id),
-    value: text("value"),
+    value: text("value").notNull(),
   },
   (table) => {
     return {
