@@ -1,10 +1,11 @@
 import { initTRPC } from "@trpc/server";
+import { db, entity } from "./db";
 
 export const t = initTRPC.create();
 
 export const appRouter = t.router({
-  helloWorld: t.procedure.query(() => {
-    return "Hello World!";
+  listEntities: t.procedure.query(async () => {
+    return await db.select().from(entity);
   }),
 });
 

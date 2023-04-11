@@ -1,7 +1,13 @@
 import { trpc } from "./trpc";
 
 export function App() {
-  const helloQuery = trpc.helloWorld.useQuery();
+  const entitiesQuery = trpc.listEntities.useQuery();
 
-  return <>{helloQuery.data}</>;
+  return (
+    <>
+      {entitiesQuery.data?.map((e) => {
+        return <div key={e.id}>{e.name}</div>;
+      })}
+    </>
+  );
 }
