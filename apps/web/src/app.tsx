@@ -1,5 +1,6 @@
 import { FunctionalComponent } from "preact";
 import { trpc } from "./trpc";
+import { Navbar } from "./components/Navbar";
 
 type EntityProps = {
   entity: {
@@ -27,14 +28,17 @@ export function App() {
   const entitiesQuery = trpc.listEntities.useQuery();
 
   return (
-    <div className="h-screen bg-gradient-to-tr from-[#F3E9EF] to-[#1B6678]">
-      <div className="container mx-auto pt-20 px-6">
-        <div className="flex flex-col gap-10">
-          {entitiesQuery.data?.map((e) => {
-            return <Entity entity={e} />;
-          })}
+    <>
+      <Navbar />
+      <div className="">
+        <div className="container mx-auto pt-20 px-6">
+          <div className="flex flex-col gap-10">
+            {entitiesQuery.data?.map((e) => {
+              return <Entity entity={e} />;
+            })}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
