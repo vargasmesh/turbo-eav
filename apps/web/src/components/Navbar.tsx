@@ -1,8 +1,10 @@
 import { FunctionalComponent } from "preact";
+import { CreateEntityModal } from "./CreateEntityModal";
 
 export const Navbar: FunctionalComponent = () => {
   return (
     <header class="flex flex-wrap sm:justify-start sm:flex-nowrap z-50 w-full text-sm py-4 bg-white shadow-lg">
+      <CreateEntityModal />
       <nav
         class="max-w-[85rem] w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between"
         aria-label="Global"
@@ -51,6 +53,7 @@ export const Navbar: FunctionalComponent = () => {
             <button
               type="button"
               class="py-2 px-2 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold text-primary hover:bg-primary hover:text-white  transition-all text-sm"
+              data-hs-overlay="#hs-create-entity-modal"
             >
               Create Entity
             </button>
