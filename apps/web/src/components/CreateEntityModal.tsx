@@ -1,6 +1,22 @@
 import { FunctionalComponent } from "preact";
+import { useSignal } from "@preact/signals";
+import { trpc } from "../trpc";
 
 export const CreateEntityModal: FunctionalComponent = () => {
+  const mutation = trpc.createEntity.useMutation();
+  const entityName = useSignal("");
+  const onInput = (e: Event) => {
+    if (e.target instanceof HTMLInputElement) {
+      entityName.value = e.target.value;
+    }
+  };
+
+  console.log(entityName.value);
+  const onClick = () => {
+    if (!entityName.value) return;
+    mutation.mutate({ name: entityName.value });
+  };
+
   return (
     <div
       id="hs-create-entity-modal"
@@ -8,7 +24,7 @@ export const CreateEntityModal: FunctionalComponent = () => {
     >
       <div class="hs-overlay-open:mt-7 hs-overlay-open:opacity-100 hs-overlay-open:duration-500 opacity-0 ease-out transition-all sm:max-w-sm sm:w-full m-3 sm:mx-auto">
         <div class="flex flex-col bg-white border shadow-sm rounded-xl w-full">
-          <div class="flex justify-between items-center py-3 px-4 border-b">
+          <div class="flex justify-between items-1center py-3 px-4 border-b">
             <h3 class="font-bold text-gray-800 ">Create Entity</h3>
             <button
               type="button"
@@ -38,6 +54,8 @@ export const CreateEntityModal: FunctionalComponent = () => {
             <input
               id="entity-name"
               className="py-3 px-4 border rounded-lg border-primary focus:border-primary focus:ring-primary focus:outline-primary w-full"
+              value={entityName.value}
+              onInput={onInput}
             />
           </div>
           <div class="flex justify-end items-center gap-x-2 py-3 px-4 border-t ">
@@ -48,12 +66,12 @@ export const CreateEntityModal: FunctionalComponent = () => {
             >
               Close
             </button>
-            <a
+            <button
               class="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-primary text-white transition-all text-sm"
-              href="#"
+              onClick={onClick}
             >
               Create
-            </a>
+            </button>
           </div>
         </div>
       </div>
