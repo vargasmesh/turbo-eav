@@ -28,17 +28,15 @@ export function App() {
   const entitiesQuery = trpc.listEntities.useQuery();
 
   return (
-    <>
+    <div className="h-screen">
       <Navbar />
-      <div className="">
-        <div className="container mx-auto pt-20 px-6">
-          <div className="flex flex-col gap-10">
-            {entitiesQuery.data?.map((e) => {
-              return <Entity entity={e} />;
-            })}
-          </div>
+      <div className="container mx-auto px-6 overflow-y-auto h-[calc(100vh-3.5rem)]">
+        <div className="flex flex-col gap-10 py-12">
+          {entitiesQuery.data?.map((e) => {
+            return <Entity entity={e} />;
+          })}
         </div>
       </div>
-    </>
+    </div>
   );
 }

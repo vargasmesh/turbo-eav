@@ -3,7 +3,7 @@ import { CreateEntityModal } from "./CreateEntityModal";
 
 export const Navbar: FunctionalComponent = () => {
   return (
-    <header class="flex flex-wrap sm:justify-start sm:flex-nowrap z-50 w-full text-sm py-4 bg-white shadow-lg">
+    <header class="flex flex-wrap sm:justify-start sm:flex-nowrap z-50 w-full text-sm py-4 bg-white shadow-lg h-14">
       <CreateEntityModal />
       <nav
         class="max-w-[85rem] w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between"
