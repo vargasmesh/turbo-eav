@@ -16,7 +16,8 @@
     "@trpc/server": "^10.18.0",
     "api": "workspace:*",
     "preact": "^10.13.0",
-    "preline": "^1.8.0"
+    "preline": "^1.8.0",
+    "tailwind-scrollbar-hide": "^1.1.7"
   },
   "devDependencies": {
     "@preact/preset-vite": "^2.5.0",
