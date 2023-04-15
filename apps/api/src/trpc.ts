@@ -1,6 +1,7 @@
 import { initTRPC } from "@trpc/server";
 import { db, entity } from "./db";
 import { z } from "zod";
+import { eq, gte } from "drizzle-orm";
 
 export const t = initTRPC.create();
 
@@ -14,10 +15,16 @@ export const appRouter = t.router({
     )
     .query(async ({ input }) => {
       const limit = input.limit ?? 5;
-      const items = await db
+      let query = db
         .select()
         .from(entity)
         .limit(limit + 1);
+
+      if (input.cursor) {
+        query = query.where(gte(entity.id, input.cursor));
+      }
+
+      const items = await query.execute();
 
       let nextCursor: number | undefined = undefined;
       if (items.length > limit) {
