@@ -2,6 +2,7 @@ import { trpc } from "./trpc";
 import { Navbar } from "./components/Navbar";
 import { EntityCard } from "./components/EntityCard";
 import ArrowIcon from "~icons/heroicons/chevron-double-down-20-solid";
+import { useMemo } from "preact/hooks";
 
 export function App() {
   const entitiesQuery = trpc.listEntities.useInfiniteQuery(
@@ -11,16 +12,19 @@ export function App() {
     }
   );
 
+  const entities = useMemo(
+    () => entitiesQuery.data?.pages.flatMap((page) => page.items),
+    [entitiesQuery.data]
+  );
+
   return (
     <div className="h-screen">
       <Navbar />
       <div className="container mx-auto px-6 overflow-y-auto h-[calc(100vh-3.5rem)] scrollbar-hide">
         <div className="flex flex-col gap-10 py-10">
-          {entitiesQuery.data?.pages.map((page) => {
-            return page.items.map((e) => {
-              return <EntityCard entity={e} />;
-            });
-          })}
+          {entities?.map((entity) => (
+            <EntityCard entity={entity} />
+          ))}
         </div>
         {entitiesQuery.hasNextPage && (
           <div className="flex items-center justify-center py-2">
