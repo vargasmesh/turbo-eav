@@ -5,7 +5,8 @@
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "module": "ESNext",
     "jsx": "react-jsx",
-    "jsxImportSource": "preact"
+    "jsxImportSource": "preact",
+    "types": ["unplugin-icons/types/preact"]
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]
