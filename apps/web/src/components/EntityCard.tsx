@@ -9,7 +9,7 @@ export type EntityProps = {
 
 export const EntityCard: FunctionalComponent<EntityProps> = ({ entity }) => {
   return (
-    <div className="bg-white md:max-w-sm rounded-xl p-6 shadow-2xl font-mono">
+    <div className="bg-white md:max-w-sm rounded-xl p-6 shadow-2xl font-mono animate-slide-in">
       <div>
         <span className="text-gray-500">ID: </span>
         {entity.id}
