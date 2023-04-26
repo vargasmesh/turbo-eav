@@ -18,9 +18,9 @@ export function App() {
   );
 
   return (
-    <div class="h-screen">
+    <div>
       <Navbar />
-      <div class="container mx-auto px-6 overflow-y-auto h-[calc(100vh-3.5rem)] scrollbar-hide">
+      <div class="container mx-auto px-6 overflow-y-auto scrollbar-hide">
         <div class="flex flex-col gap-10 py-10">
           {entities?.map((entity) => (
             <EntityCard entity={entity} />
