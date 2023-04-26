@@ -69,12 +69,12 @@ export const CreateEntityModal: FunctionalComponent = () => {
             </button>
           </div>
           <div class="p-4 overflow-y-auto">
-            <label for="entity-name" className="block mb-2">
+            <label for="entity-name" class="block mb-2">
               Entity name
             </label>
             <input
               id="entity-name"
-              className="py-3 px-4 border rounded-lg border-primary focus:border-primary focus:ring-primary focus:outline-primary w-full"
+              class="py-3 px-4 border rounded-lg border-primary focus:border-primary focus:ring-primary focus:outline-primary w-full"
               value={entityName.value}
               onInput={onInput}
             />
