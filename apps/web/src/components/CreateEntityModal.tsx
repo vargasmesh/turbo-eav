@@ -1,9 +1,22 @@
 import { FunctionalComponent } from "preact";
 import { useSignal } from "@preact/signals";
 import { trpc } from "../trpc";
+import { useState } from "preact/hooks";
 
 export const CreateEntityModal: FunctionalComponent = () => {
-  const mutation = trpc.createEntity.useMutation();
+  const resultMessage = useSignal("");
+  const resultClasses = useSignal("");
+  const mutation = trpc.createEntity.useMutation({
+    onSuccess: () => {
+      resultMessage.value = "Entity created successfully!";
+      resultClasses.value = "font-semibold text-green-500";
+    },
+    onError: () => {
+      resultMessage.value = "Failed to create entity.";
+      resultClasses.value = "font-semibold text-red-500";
+    },
+  });
+
   const entityName = useSignal("");
   const onInput = (e: Event) => {
     if (e.target instanceof HTMLInputElement) {
@@ -11,11 +24,19 @@ export const CreateEntityModal: FunctionalComponent = () => {
     }
   };
 
-  console.log(entityName.value);
   const onClick = () => {
     if (!entityName.value) return;
     mutation.mutate({ name: entityName.value });
   };
+
+  useState(() => {
+    document.addEventListener("open.hs.overlay", (e) => {
+      entityName.value = "";
+      resultMessage.value = "";
+    });
+
+    return () => document.removeEventListener("open.hs.overlay", () => {});
+  });
 
   return (
     <div
@@ -58,20 +79,23 @@ export const CreateEntityModal: FunctionalComponent = () => {
               onInput={onInput}
             />
           </div>
-          <div class="flex justify-end items-center gap-x-2 py-3 px-4 border-t ">
-            <button
-              type="button"
-              class="hs-dropdown-toggle py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 transition-all text-sm"
-              data-hs-overlay="#hs-create-entity-modal"
-            >
-              Close
-            </button>
-            <button
-              class="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-primary text-white transition-all text-sm"
-              onClick={onClick}
-            >
-              Create
-            </button>
+          <div class="gap-x-2 py-3 px-4 border-t ">
+            <div class={resultClasses.value}>{resultMessage.value}</div>
+            <div class="flex justify-end items-center">
+              <button
+                type="button"
+                class="hs-dropdown-toggle py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 transition-all text-sm"
+                data-hs-overlay="#hs-create-entity-modal"
+              >
+                Close
+              </button>
+              <button
+                class="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-primary text-white transition-all text-sm"
+                onClick={onClick}
+              >
+                Create
+              </button>
+            </div>
           </div>
         </div>
       </div>
